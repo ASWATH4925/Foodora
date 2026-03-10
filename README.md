@@ -1,5 +1,7 @@
 # 🍔 Foodora – Flutter Food Delivery Application
 
+https://foodora-eta.vercel.app/
+
 Foodora is a feature-rich food delivery UI application built using the Flutter framework. The project demonstrates how modern food delivery platforms function by combining responsive UI design, user authentication, cart management, and an AI-powered chatbot assistant.
 
 The application is designed to simulate a real-world enterprise-level mobile application with modular architecture and smooth user interaction.

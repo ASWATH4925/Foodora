@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:swiggy_ui/models/spotlight_best_top_food.dart';
 import 'package:swiggy_ui/utils/ui_helper.dart';
-import 'package:swiggy_ui/views/mobile/swiggy/restaurants/restaurant_detail_screen.dart';
+import 'package:swiggy_ui/views/mobile/foodora/restaurants/restaurant_detail_screen.dart';
 import 'package:swiggy_ui/widgets/responsive.dart';
 
 class SpotlightBestTopFoodItem extends StatelessWidget {
@@ -23,7 +23,7 @@ class SpotlightBestTopFoodItem extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const RestaurantDetailScreen(),
+                  builder: (context) => RestaurantDetailScreen(restaurant: restaurant),
                 ),
               );
             },
@@ -61,7 +61,7 @@ class SpotlightBestTopFoodItem extends StatelessWidget {
                     maxLines: 1,
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle2!
+                        .titleSmall!
                         .copyWith(fontSize: 18.0),
                   ),
                   Text(
@@ -69,7 +69,7 @@ class SpotlightBestTopFoodItem extends StatelessWidget {
                     maxLines: 2,
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1!
+                        .bodyLarge!
                         .copyWith(color: Colors.grey[800], fontSize: 13.5),
                   ),
                   UIHelper.verticalSpaceSmall(),
@@ -77,7 +77,7 @@ class SpotlightBestTopFoodItem extends StatelessWidget {
                     restaurant.coupon,
                     style: Theme.of(context)
                         .textTheme
-                        .bodyText1!
+                        .bodyLarge!
                         .copyWith(color: Colors.red[900], fontSize: 13.0),
                   ),
                   const Divider(),

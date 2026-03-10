@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "579552087926",
+    "project_id": "foodora-16cf5",
+    "storage_bucket": "foodora-16cf5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:579552087926:android:77983999d764869d87f457",
+        "android_client_info": {
+          "package_name": "com.example.swiggy_ui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBYJYQ8SytCzXyCBTNpBnR0q7bYzkED7YE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

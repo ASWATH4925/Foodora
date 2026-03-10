@@ -36,42 +36,49 @@ class FoodListItemView extends StatelessWidget {
             ),
           ),
           UIHelper.horizontalSpaceMedium(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                restaurant.name,
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle2!
-                    .copyWith(fontSize: 18.0),
-              ),
-              Text(restaurant.desc,
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Text(
+                  restaurant.name,
                   style: Theme.of(context)
                       .textTheme
-                      .bodyText1!
-                      .copyWith(color: Colors.grey[800], fontSize: 13.5)),
-              UIHelper.verticalSpaceExtraSmall(),
-              Text(
-                restaurant.coupon,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1!
-                    .copyWith(color: Colors.red[900], fontSize: 13.0),
-              ),
-              UIHelper.verticalSpaceSmall(),
-              Row(
-                children: <Widget>[
-                  Icon(
-                    Icons.star,
-                    size: 14.0,
-                    color: Colors.grey[600],
-                  ),
-                  Text(restaurant.ratingTimePrice)
-                ],
-              )
-            ],
+                      .titleSmall!
+                      .copyWith(fontSize: 18.0),
+                ),
+                Text(restaurant.desc,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyLarge!
+                        .copyWith(color: Colors.grey[800], fontSize: 13.5)),
+                UIHelper.verticalSpaceExtraSmall(),
+                Text(
+                  restaurant.coupon,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyLarge!
+                      .copyWith(color: Colors.red[900], fontSize: 13.0),
+                ),
+                UIHelper.verticalSpaceSmall(),
+                Row(
+                  children: <Widget>[
+                    Icon(
+                      Icons.star,
+                      size: 14.0,
+                      color: Colors.grey[600],
+                    ),
+                    Flexible(
+                      child: Text(
+                        restaurant.ratingTimePrice,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                )
+              ],
+            ),
           )
         ],
       ),

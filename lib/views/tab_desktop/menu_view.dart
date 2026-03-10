@@ -2,13 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:swiggy_ui/models/tab_desktop/menu.dart';
 import 'package:swiggy_ui/utils/app_colors.dart';
 import 'package:swiggy_ui/utils/ui_helper.dart';
+import 'package:swiggy_ui/views/mobile/login_screen.dart';
 
 class MenuView extends StatelessWidget {
-  const MenuView({Key? key, this.expandFlex = 2, this.isTab = false})
-      : super(key: key);
+  const MenuView({
+    Key? key,
+    this.expandFlex = 2,
+    this.isTab = false,
+    required this.selectedIndex,
+    required this.onMenuTap,
+  }) : super(key: key);
 
   final int expandFlex;
   final bool isTab;
+  final int selectedIndex;
+  final ValueChanged<int> onMenuTap;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +41,8 @@ class MenuView extends StatelessWidget {
                 (index) => _MenuItem(
                   menu: menus[index],
                   isTab: isTab,
+                  isSelected: index == selectedIndex,
+                  onTap: () => onMenuTap(index),
                 ),
               ),
             ),
@@ -41,7 +51,12 @@ class MenuView extends StatelessWidget {
                 ? IconButton(
                     icon: const Icon(Icons.exit_to_app),
                     iconSize: 30.0,
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushAndRemoveUntil(
+                        MaterialPageRoute(builder: (context) => const LoginScreen()),
+                        (route) => false,
+                      );
+                    },
                   )
                 : FractionallySizedBox(
                     widthFactor: 0.5,
@@ -50,10 +65,15 @@ class MenuView extends StatelessWidget {
                       child: OutlinedButton.icon(
                         icon: const Icon(Icons.exit_to_app),
                         label: const Text('Logout'),
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (context) => const LoginScreen()),
+                            (route) => false,
+                          );
+                        },
                         style: ElevatedButton.styleFrom(
-                          onPrimary: swiggyOrange,
-                          side: BorderSide(width: 2.0, color: swiggyOrange!),
+                          foregroundColor: foodoraOrange,
+                          side: BorderSide(width: 2.0, color: foodoraOrange!),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(32.0),
                           ),
@@ -69,11 +89,18 @@ class MenuView extends StatelessWidget {
 }
 
 class _MenuItem extends StatefulWidget {
-  const _MenuItem({Key? key, required this.menu, this.isTab = false})
-      : super(key: key);
+  const _MenuItem({
+    Key? key,
+    required this.menu,
+    this.isTab = false,
+    required this.isSelected,
+    required this.onTap,
+  }) : super(key: key);
 
   final Menu menu;
   final bool isTab;
+  final bool isSelected;
+  final VoidCallback onTap;
 
   @override
   __MenuItemState createState() => __MenuItemState();
@@ -85,6 +112,8 @@ class __MenuItemState extends State<_MenuItem> {
 
   @override
   Widget build(BuildContext context) {
+    final isActive = isHovered || widget.isSelected;
+    
     return Container(
       alignment: Alignment.center,
       margin:
@@ -92,7 +121,7 @@ class __MenuItemState extends State<_MenuItem> {
       padding:
           EdgeInsets.symmetric(vertical: 5.0, horizontal: isTab ? 0.0 : 10.0),
       child: InkWell(
-        onTap: () {},
+        onTap: widget.onTap,
         onHover: (value) {
           if (!isTab) {
             setState(() {
@@ -101,7 +130,7 @@ class __MenuItemState extends State<_MenuItem> {
           }
         },
         child: Container(
-          decoration: isHovered
+          decoration: isActive
               ? BoxDecoration(
                   color: Colors.deepOrange[100],
                   borderRadius: BorderRadius.circular(30.0),
@@ -114,9 +143,9 @@ class __MenuItemState extends State<_MenuItem> {
           child: isTab
               ? IconButton(
                   icon: Icon(widget.menu.icon,
-                      color: isHovered ? swiggyOrange : Colors.black),
+                      color: isActive ? foodoraOrange : Colors.black),
                   iconSize: 30.0,
-                  onPressed: () {},
+                  onPressed: widget.onTap,
                 )
               : Row(
                   mainAxisSize: MainAxisSize.min,
@@ -124,13 +153,13 @@ class __MenuItemState extends State<_MenuItem> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Icon(widget.menu.icon,
-                        color: isHovered ? swiggyOrange : Colors.black,
+                        color: isActive ? foodoraOrange : Colors.black,
                         size: 30.0),
                     UIHelper.horizontalSpaceMedium(),
                     Text(
                       widget.menu.title,
-                      style: Theme.of(context).textTheme.headline6!.copyWith(
-                            color: isHovered ? swiggyOrange : Colors.black,
+                      style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                            color: isActive ? foodoraOrange : Colors.black,
                           ),
                     ),
                   ],

@@ -78,7 +78,7 @@ class _UserHeader extends StatelessWidget {
                     children: [
                       Text(
                         'Vinoth',
-                        style: Theme.of(context).textTheme.headline6!.copyWith(
+                        style: Theme.of(context).textTheme.headlineSmall!.copyWith(
                             fontSize: 17.0, fontWeight: FontWeight.bold),
                       ),
                       UIHelper.verticalSpaceExtraSmall(),
@@ -86,7 +86,7 @@ class _UserHeader extends StatelessWidget {
                         'User',
                         style: Theme.of(context)
                             .textTheme
-                            .bodyText1!
+                            .bodyLarge!
                             .copyWith(color: Colors.grey, fontSize: 13.0),
                       ),
                     ],
@@ -118,13 +118,13 @@ class _MyOrdersList extends StatelessWidget {
             Row(
               children: [
                 Text('Order Menu',
-                    style: Theme.of(context).textTheme.headline6),
+                    style: Theme.of(context).textTheme.headlineSmall),
                 const Spacer(),
                 Text('See all',
                     style: Theme.of(context)
                         .textTheme
-                        .subtitle1!
-                        .copyWith(color: swiggyOrange)),
+                        .titleMedium!
+                        .copyWith(color: foodoraOrange)),
               ],
             ),
             UIHelper.verticalSpaceSmall(),
@@ -165,7 +165,7 @@ class _MyOrdersList extends StatelessWidget {
                               Text(cartItems[index].title,
                                   style: Theme.of(context)
                                       .textTheme
-                                      .headline6!
+                                      .headlineSmall!
                                       .copyWith(fontSize: 14.0)),
                               UIHelper.verticalSpaceMedium(),
                               Row(
@@ -201,7 +201,7 @@ class _MyOrdersList extends StatelessWidget {
                           'Rs ${cartItems[index].price}',
                           style: Theme.of(context)
                               .textTheme
-                              .headline6!
+                              .headlineSmall!
                               .copyWith(
                                   fontSize: 16.0, fontWeight: FontWeight.w800),
                         ),
@@ -223,11 +223,11 @@ class _Checkout extends StatelessWidget {
   Widget build(BuildContext context) {
     final listTileStyle = Theme.of(context)
         .textTheme
-        .subtitle1!
+        .titleMedium!
         .copyWith(fontSize: 14.0, fontWeight: FontWeight.w600);
     final amountStyle = Theme.of(context)
         .textTheme
-        .headline6!
+        .headlineSmall!
         .copyWith(fontSize: 15.0, fontWeight: FontWeight.bold);
 
     return Expanded(
@@ -251,7 +251,7 @@ class _Checkout extends StatelessWidget {
             padding:
                 const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
             decoration: BoxDecoration(
-              border: Border.all(color: swiggyOrange!),
+              border: Border.all(color: foodoraOrange!),
               color: Colors.deepOrange[50],
             ),
             child: Row(
@@ -265,8 +265,8 @@ class _Checkout extends StatelessWidget {
                     icon: const Icon(Icons.countertops_outlined),
                     label: const Text('Add Coupon'),
                     style: ElevatedButton.styleFrom(
-                      onPrimary: Colors.white,
-                      primary: swiggyOrange,
+                      foregroundColor: Colors.white,
+                      backgroundColor: foodoraOrange,
                       elevation: 0.0,
                     ),
                   ),
@@ -289,8 +289,8 @@ class _Checkout extends StatelessWidget {
               icon: const Icon(Icons.countertops_outlined),
               label: const Text('Checkout'),
               style: ElevatedButton.styleFrom(
-                onPrimary: Colors.white,
-                primary: swiggyOrange,
+                foregroundColor: Colors.white,
+                backgroundColor: foodoraOrange,
               ),
             ),
           )

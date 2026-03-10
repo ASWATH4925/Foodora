@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:swiggy_ui/views/tab_desktop/tab_screen.dart';
-
+import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
+import 'firebase_options.dart';
+import 'models/cart_provider.dart';
+import 'models/address_provider.dart';
+import 'models/order_provider.dart';
+import 'models/favourite_provider.dart';
 import 'shared/app_theme.dart';
-import 'views/tab_desktop/desktop_screen.dart';
-import 'views/mobile/mobile_screen.dart';
-import 'widgets/responsive.dart';
+import 'views/mobile/login_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -15,14 +22,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'SwiggyUI',
-      debugShowCheckedModeBanner: false,
-      theme: appPrimaryTheme(),
-      home: const Responsive(
-        mobile: MobileScreen(),
-        tablet: TabScreen(),
-        desktop: DesktopScreen(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => AddressProvider()),
+        ChangeNotifierProvider(create: (_) => OrderProvider()),
+        ChangeNotifierProvider(create: (_) => FavouriteProvider()),
+      ],
+      child: MaterialApp(
+        title: 'FoodoraUI',
+        debugShowCheckedModeBanner: false,
+        theme: appPrimaryTheme(),
+        home: const LoginScreen(),
       ),
     );
   }

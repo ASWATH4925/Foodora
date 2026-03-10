@@ -19,7 +19,7 @@ class PopularCategory {
       ),
       PopularCategory(
         image: 'assets/icons/only-on-swiggy.png',
-        name: 'Only on\nSwiggy',
+        name: 'Only on\nFoodora',
       ),
       PopularCategory(
         image: 'assets/icons/offer.png',
@@ -43,7 +43,7 @@ class PopularCategory {
       ),
       PopularCategory(
         image: 'assets/icons/only-on-swiggy.png',
-        name: 'Only on\nSwiggy',
+        name: 'Only on\nFoodora',
       ),
       PopularCategory(
         image: 'assets/icons/food.png',
